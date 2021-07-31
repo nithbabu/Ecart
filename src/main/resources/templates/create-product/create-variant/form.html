@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECART</title>
+</head>
+<body>
+
+<h1 >Create variant for <span data-th-text="${productId}"></span></h1>
+
+<form data-th-object="${variant}" method="post">
+    <input type="hidden" name="id" data-th-value="${productId}"/>
+    <div class="form-group">
+        <label for="variantType">Select type</label>
+        <select id="variantType" data-th-field="*{variantType}">
+            <option value="">Please select a type</option>
+            <option value="Shirt">Shirt</option>
+            <option value="Jean">Jean</option>
+            <option value="Jacket">Jacket</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="variantName">Variant name</label>
+        <input id="variantName" type="text" data-th-field="*{variantName}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="variantValue">Variant value</label>
+        <input id="variantValue" type="text" data-th-field="*{variantValue}"/>
+    </div>
+
+    <input type="submit" value="Submit"/>
+
+</form>
+
+</body>
+</html>

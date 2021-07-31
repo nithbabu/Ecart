@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECART</title>
+</head>
+<body>
+
+<script>
+    console.log("test");
+    function variantValueChanged(){
+        var href = "/dashboard/filter";
+        var variantName = document.getElementById("variantName").value;
+        var variantValue = document.getElementById("variantValue").value;
+        href = href + "?variantName=" + variantName + "&variantValue=" + variantValue;
+        console.log(href);
+
+        var a = document.getElementById("applyFilters");
+        a.href = href;
+    }
+</script>
+
+<h1>Dashboard</h1>
+
+<a href="/create-product">Create product</a><br/>
+
+<p>Please fill the below fields to apply filters</p>
+<div class="form-group">
+    <label>Variant name:</label>
+    <select name="variantName" id="variantName">
+        <option value="">Please select a filter</option>
+        <option data-th-each="item : ${variantNames}"
+                data-th-value="${item}" data-th-text="${item}" />
+    </select>
+</div>
+<div class="form-group">
+    <label>Variant value: (Eg: M, Black etc)</label>
+    <input type="text" name="variantValue" onchange="variantValueChanged()" id="variantValue"/>
+</div>
+<a href="/dashboard/filter" id="applyFilters">Apply filters</a>
+<br/>
+
+<h2>List of products</h2>
+<table>
+    <thead>
+        <th>Product_Id || </th>
+        <th>Brand || </th>
+        <th>Product Type || </th>
+        <th>Product Price || </th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        <tr data-th-each="product: ${products}">
+            <td data-th-text="${product.id}"></td>
+            <td data-th-text="${product.brand}"></td>
+            <td data-th-text="${product.ProductType}"></td>
+            <td data-th-text="${product.price}"></td>
+            <td>
+                <a data-th-href="@{'/update/' + ${product.id}}">Update product</a><br/>
+                <a data-th-href="@{'/update/create-variant/' + ${product.id}}">Create variant</a><br/>
+                <a data-th-href="@{'/delete/' + ${product.id}}">Remove</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

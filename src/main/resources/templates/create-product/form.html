@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECART</title>
+</head>
+<body>
+
+<h1 data-th-if="${productId != null}">Product ID <span data-th-text="${productId}"></span></h1>
+<h1 data-th-unless="${productId != null}">Create product</h1>
+
+<form data-th-object="${product}" method="post">
+    <input type="hidden" data-th-field="*{id}"/>
+    <div class="form-group">
+        <label for="productType">Select type</label>
+        <select id="productType" data-th-field="*{productType}">
+            <option value="">Please select a type</option>
+            <option value="Shirt">Shirt</option>
+            <option value="Jean">Jean</option>
+            <option value="Jacket">Jacket</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="brand">Brand</label>
+        <input id="brand" type="text" data-th-field="*{brand}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input id="price" type="text" data-th-field="*{price}"/>
+    </div>
+
+    <input type="submit" value="Submit"/>
+
+    <a data-th-if="${productId != null}" data-th-href="@{'create-variant/' + ${productId}}">Create variant</a>
+
+</form>
+
+</body>
+</html>
